@@ -1,1 +1,99 @@
-Hello World
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Presentation Demo</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.js'></script>
+        <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.15.0/mapbox-gl.css' rel='stylesheet' />
+        <style>
+            body { margin:0; padding:0; }
+            #map { position:absolute; top:0; bottom:0; width:100%; }
+        </style>
+    </head>
+    <body>
+        <div id='map'></div>
+
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoidGVhbW1pZGRsZXRhYmxlIiwiYSI6ImNpbDZ0cHRuMDA1eml1MGx2bjVvd2RpNm8ifQ.H7TauzsEVrD4fvr0ORQq8w';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/dark-v8',
+                zoom: 11,
+                center: [-80.235302, 43.535139],
+                options: {
+                    interactive: false
+                }
+            });
+
+            map.on('style.load', function () {
+                map.addSource('ward-bounds', {
+                    type: 'vector',
+                    url: 'mapbox://teammiddletable.b759brfn'
+                });
+                map.addLayer({
+                    "id": "ward-bounds",
+                    "type": "line",
+                    "source": "ward-bounds",
+                    "source-layer": "wards",
+                    "paint": {
+                        "line-color": "#1E5D87",
+                        "line-width": 2
+                    },
+                });
+
+                var breaks = [
+                                [0, "#F0F7FC"],
+                                [996, "#B1D6EE"],
+                                [1992, "#83BDE4"],
+                                [2988, "#499ED7"],
+                                [3984, "#3091D1"],
+                                [4980, "#2980B9"],
+                                [5976, "#236FA0"],
+                                [6972, "#1E5D87"],
+                                [7968, "#184C6E"],
+                                [8964, "#133B55"],
+                                [9960, "#0D2A3C"]
+                            ];
+
+                for (var p = 0; p < breaks.length; p++) {
+                    var filters
+                    if (p < breaks.length - 1) {
+                        filters = [ 'all',
+                            [ '>=', 'total_rentals', breaks[p][0] ],
+                            [ '<', 'total_rentals', breaks[p + 1][0] ]
+                        ]
+                    } else {
+                        filters = [ 'all',
+                            [ '>=', 'total_rentals', breaks[p][0] ]
+                        ]
+                    }
+
+                    console.log({
+                        "id": "ward-fill-" + p,
+                        "type": "fill",
+                        "source": "ward-bounds",
+                        "source-layer": "wards",
+                        "paint": {
+                            'fill-color': breaks[p][1],
+                        },
+                        "filter": filters,
+                    })
+                    map.addLayer({
+                        "id": "ward-fill-" + p,
+                        "type": "fill",
+                        "source": "ward-bounds",
+                        "source-layer": "wards",
+                        "paint": {
+                            'fill-color': breaks[p][1],
+                        },
+                        "filter": filters,
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>

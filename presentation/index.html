@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Maps! Maps! Maps!</title>
+
+        <!-- Bootstrap -->
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <style>
+            html, body {
+                display: flex;
+                flex-flow: column;
+                height: 100%;
+                overflow: hidden;
+            }
+
+            .navbar {
+                margin-bottom: 0;
+            }
+
+            #map {
+                flex: 1 1 auto;
+            }
+        </style>
+    </head>
+
+    <body>
+        <nav class="navbar navbar-dark bg-inverse navbar-full">
+            <div class="container">
+                <a class="navbar-brand" href="#">Team Middle Table</a>
+            </div>
+            <div class="nav navbar-nav">
+                <a class="nav-item nav-link active" href="/index.html">Map</a>
+                <a class="nav-item nav-link" href="/charts.html">Charts</a>
+                <a class="nav-item nav-link" href="/about.html">About</a>
+            </div>
+        </nav>
+
+        <iframe id="map" src="map.html"></iframe>
+
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="js/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
