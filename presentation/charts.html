@@ -23,9 +23,8 @@
               <a class="navbar-brand" href="#">Team Middle Table</a>
           </div>
           <div class="nav navbar-nav">
-              <a class="nav-item nav-link" href="/presentation/index.html">Map</a>
-              <a class="nav-item nav-link active" href="/presentation/charts.html">Charts</a>
-              <a class="nav-item nav-link active" href="presentation/about.html">About</a>
+              <a class="nav-item nav-link" href="/index.html">Map</a>
+              <a class="nav-item nav-link active" href="/charts.html">Charts</a>
           </div>
       </nav>
 
@@ -57,11 +56,12 @@
       $(function () {
           // Create the chart for food vendors!
           $('#food_vendor').highcharts({
+
               chart: {
                   type: 'column'
               },
               title: {
-                  text: 'Food Vendors by Wards in Guelph'
+                  text: 'Food Vendors By Wards in Guelph'
               },
               subtitle: {
                   text: 'Click the columns to view details. Source: <a href="">From Super Team 2</a>.'
@@ -71,8 +71,9 @@
               },
               yAxis: {
                   title: {
-                      text: 'Number of Food Vendors'
+                      text: 'Total number of food vendors'
                   }
+
               },
               legend: {
                   enabled: false
@@ -86,12 +87,14 @@
                       }
                   }
               },
+
               tooltip: {
                   headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
                   pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of food vendors<br/>'
               },
+
               series: [{
-                  name: 'Number of Food Vendors',
+                  name: 'Number of Food vendors',
                   colorByPoint: true,
                   data: [{
                       name: 'Ward1',
@@ -247,10 +250,14 @@
                           ]
                       ]
                   }
+
+
                   ]
               }
           });
       });
+
+
       // Create for Store basic basket chart
       $(function () {
           $('#food_basket').highcharts({
@@ -258,7 +265,7 @@
                   type: 'column'
               },
               title: {
-                  text: 'Total Cost of Food Basket by Vendors and Food Groups'
+                  text: 'Total cost of food basket by stores by groups'
               },
               xAxis: {
                   categories: ['Food Basics', 'Goodness Me', 'Metro', 'Nofrills Jones', 'Nofrills Doms', 'VPMart', 'Zehrs']
@@ -266,7 +273,7 @@
               yAxis: {
                   min: 0,
                   title: {
-                      text: 'Cost of Food Basket by Food Group ($)'
+                      text: 'Total cost of food basket by stores by groups ($)'
                   },
                   stackLabels: {
                       enabled: true,
@@ -318,13 +325,14 @@
               }]
           });
       });
+
       $(function () {
           $('#food_basket2').highcharts({
               chart: {
                   type: 'column'
               },
               title: {
-                  text: 'Community Gardens/Kitchens/Food Pantries by Ward in Guelph'
+                  text: 'Food Gardens/ Food Kitchens/ Food Pantries by Ward in Guelph'
               },
               subtitle: {
                   text: 'Source: From Super Team 2'
@@ -343,7 +351,7 @@
               yAxis: {
                   min: 0,
                   title: {
-                      text: 'Number of Community Gardens/Kitchens/Food Pantries'
+                      text: 'number of food garden/kitchen/pantries'
                   }
               },
               tooltip: {
