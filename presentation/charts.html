@@ -25,14 +25,19 @@
           <div class="nav navbar-nav">
               <a class="nav-item nav-link" href="/index.html">Map</a>
               <a class="nav-item nav-link active" href="/charts.html">Charts</a>
-              <a class="nav-item nav-link" href="/about.html">About</a>
           </div>
       </nav>
 
       <div class="container">
-          <div class="row">
-              <p>This is where the charts will go.</p>
-          </div>
+              <!-- the food vendor charts-->
+              <div id="food_vendor" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+              <br/>
+              <div id="food_basket" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+
+              <br/>
+              <div id="food_basket2" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+          
       </div>
 
 
@@ -40,6 +45,332 @@
     <script src="js/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
-
+    <!-- Below scripts for the highcharts, lol -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/data.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    
+    <script type="text/javascript">
+      
+      $(function () {
+          // Create the chart for food vendors!
+          $('#food_vendor').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: 'Food Vendors By Wards in Guelph'
+              },
+              subtitle: {
+                  text: 'Click the columns to view details. Source: <a href="">From Super Team 2</a>.'
+              },
+              xAxis: {
+                  type: 'category'
+              },
+              yAxis: {
+                  title: {
+                      text: 'Total number of food vendors'
+                  }
+              },
+              legend: {
+                  enabled: false
+              },
+              plotOptions: {
+                  series: {
+                      borderWidth: 0,
+                      dataLabels: {
+                          enabled: true,
+                          format: '{point.y}'
+                      }
+                  }
+              },
+              tooltip: {
+                  headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+                  pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y}</b> of food vendors<br/>'
+              },
+              series: [{
+                  name: 'Number of Food vendors',
+                  colorByPoint: true,
+                  data: [{
+                      name: 'Ward1',
+                      y: 10,
+                      drilldown: 'Ward1'
+                  }, {
+                      name: 'Ward2',
+                      y: 3,
+                      drilldown: 'Ward2'
+                  }, {
+                      name: 'Ward3',
+                      y: 10,
+                      drilldown: 'Ward3'
+                  }, {
+                      name: 'Ward4',
+                      y: 9,
+                      drilldown: 'Ward4'
+                  }, {
+                      name: 'Ward5',
+                      y: 10,
+                      drilldown: 'Ward5'
+                  }, {
+                      name: 'Ward6',
+                      y: 6,
+                      drilldown: 'Ward6'
+                  }]
+              }],
+              drilldown: {
+                  series: [{
+                      name: 'Ward1',
+                      id: 'Ward1',
+                      data: [
+                          [
+                              'Supermarket',
+                              3
+                          ],
+                          [
+                              'Grocery Store',
+                              5
+                          ],
+                          [
+                              'Convenience',
+                              0
+                          ],
+                          [
+                              'Other',
+                              2
+                          ]
+                      ]
+                  }, {
+                      name: 'Ward2',
+                      id: 'Ward2',
+                      data: [
+                          [
+                              'Supermarket',
+                              2
+                          ],
+                          [
+                              'Grocery Store',
+                              1
+                          ],
+                          [
+                              'Convenience',
+                              0
+                          ],
+                          [
+                              'Other',
+                              0
+                          ]
+                      ]
+                  }, {
+                      name: 'Ward3',
+                      id: 'Ward3',
+                      data: [
+                          [
+                              'Supermarket',
+                              1
+                          ],
+                          [
+                              'Grocery Store',
+                              4
+                          ],
+                          [
+                              'Convenience',
+                              1
+                          ],
+                          [
+                              'Other',
+                              4
+                          ]
+                      ]
+                  }, {
+                      name: 'Ward4',
+                      id: 'Ward4',
+                      data: [
+                          [
+                              'Supermarket',
+                              6
+                          ],
+                          [
+                              'Grocery Store',
+                              1
+                          ],
+                          [
+                              'Convenience',
+                              2
+                          ],
+                          [
+                              'Other',
+                              0
+                          ]
+                      ]
+                  }, {
+                      name: 'Ward5',
+                      id: 'Ward5',
+                      data: [
+                          [
+                              'Supermarket',
+                              4
+                          ],
+                          [
+                              'Grocery Store',
+                              2
+                          ],
+                          [
+                              'Convenience',
+                              0
+                          ],
+                          [
+                              'Other',
+                              4
+                          ]
+                      ]
+                  }, {
+                      name: 'Ward6',
+                      id: 'Ward6',
+                      data: [
+                          [
+                              'Supermarket',
+                              2
+                          ],
+                          [
+                              'Grocery Store',
+                              1
+                          ],
+                          [
+                              'Convenience',
+                              1
+                          ],
+                          [
+                              'Other',
+                              2
+                          ]
+                      ]
+                  }
+                  ]
+              }
+          });
+      });
+      // Create for Store basic basket chart
+      $(function () {
+          $('#food_basket').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: 'Total cost of food basket by stores by groups'
+              },
+              xAxis: {
+                  categories: ['Food Basics', 'Goodness Me', 'Metro', 'Nofrills Jones', 'Nofrills Doms', 'VPMart', 'Zehrs']
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                      text: 'Total cost of food basket by stores by groups ($)'
+                  },
+                  stackLabels: {
+                      enabled: true,
+                      style: {
+                          fontWeight: 'bold',
+                          color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                      }
+                  }
+              },
+              legend: {
+                  align: 'right',
+                  x: -30,
+                  verticalAlign: 'top',
+                  y: 25,
+                  floating: true,
+                  backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                  borderColor: '#CCC',
+                  borderWidth: 1,
+                  shadow: false
+              },
+              tooltip: {
+                  //headerFormat: '<b>${point.x:.1f}</b><br/>',
+                  pointFormat: '{series.name}: ${point.y:.1f}<br/>Total: ${point.stackTotal:.1f}'
+              },
+              plotOptions: {
+                  column: {
+                      stacking: 'normal',
+                      dataLabels: {
+                          enabled: false,
+                          color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                          style: {
+                              textShadow: '0 0 3px black'
+                          }
+                      }
+                  }
+              },
+              series: [{
+                  name: 'Grains',
+                  data: [5.49, 8.37, 5.98, 5.5, 5.5, 9.37, 7.03]
+              }, {
+                  name: 'Fruit & Vegetable',
+                  data: [12.21, 24.8, 19.64, 14.21, 14, 16.23, 20.05]
+              }, {
+                  name: 'Dairy',
+                  data: [7.19, 5.45, 19.16, 3.43, 19.97, 19.97, 8.86]
+              }, {
+                  name: 'Protein',
+                  data: [13.84, 13.23, 23.1, 22.87, 22.04, 34.21, 21.76]
+              }]
+          });
+      });
+      $(function () {
+          $('#food_basket2').highcharts({
+              chart: {
+                  type: 'column'
+              },
+              title: {
+                  text: 'Food Gardens/ Food Kitchens/ Food Pantries by Ward in Guelph'
+              },
+              subtitle: {
+                  text: 'Source: From Super Team 2'
+              },
+              xAxis: {
+                  categories: [
+                      'Ward1',
+                      'Ward2',
+                      'Ward3',
+                      'Ward4',
+                      'Ward5',
+                      'Ward6'
+                  ],
+                  crosshair: true
+              },
+              yAxis: {
+                  min: 0,
+                  title: {
+                      text: 'number of food garden/kitchen/pantries'
+                  }
+              },
+              tooltip: {
+                  headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                  pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                      '<td style="padding:0"><b> {point.y}</b></td></tr>',
+                  footerFormat: '</table>',
+                  shared: true,
+                  useHTML: true
+              },
+              plotOptions: {
+                  column: {
+                      pointPadding: 0.2,
+                      borderWidth: 0
+                  }
+              },
+              series: [{
+                  name: 'Food Gardens',
+                  data: [4, 2, 4, 3, 4, 0]
+              }, {
+                  name: 'Food Pantries',
+                  data: [11, 4, 6, 4, 1, 0]
+              }, {
+                  name: 'Food Kitchens',
+                  data: [1, 3, 0, 0, 0, 0]
+              }]
+          });
+      });
+    </script>
   </body>
 </html>
